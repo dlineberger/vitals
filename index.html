@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>ACME Vital Signs Monitor</title>
+
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/c3.css">
+		<link rel="stylesheet" href="css/app.css">
+	</head>
+	<body>
+		<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+			<div class="container-fluid">
+				<a class="navbar-brand" href="#">ACME</a>
+				<ol class="breadcrumb navbar-left">
+					<li><a href="#">All Patients</a></li>
+					<li><a href="#">My Patients</a></li>
+					<li><a href="#">John Doe</a></li>
+				</ol>
+				<p class="navbar-text navbar-right">Dr. Smith</p>
+			</div>
+		</nav>
+
+		<div class="container-fluid">
+			<div class="row patient-row">
+				<h2 class="patient-name">John Doe</h2>
+				<button class="btn btn-primary pull-right">Add Reading</button>
+			</div>
+			<div class="stats-container">
+				<div class="row stat-row pulse-row">
+					<div id="pulse-chart" class="column stat-chart">
+					</div>
+					<div class="column stat-reading">
+						<p class="stat-label stat-label-header text-center">Pulse</p>
+						<h2 class="text-center">67</h2>
+						<p class="stat-label stat-label-footer text-center">BPM</p>
+					</div>
+				</div>
+				<div class="row stat-row temperature-row">
+					<div id="temperature-chart" class="column stat-chart">
+					</div>
+					<div class="column stat-reading">
+						<p class="stat-label stat-label-header text-center">Temperature</p>
+						<h2 class="text-center">98.6</h2>
+						<p class="stat-label stat-label-footer text-center">&deg;F</p>
+					</div>
+				</div>
+				<div class="row stat-row blood-pressure-row">
+					<div id="blood-pressure-chart" class="column stat-chart">
+					</div>
+					<div class="column stat-reading">
+						<p class="stat-label stat-label-header text-center">Blood Pressure</p>
+						<h2 class="text-center">120 / 80</h2>
+						<p class="stat-label stat-label-footer text-center">Thingies</p>
+					</div>
+				</div>
+				<div class="row stat-row respiratory-rate-row">
+					<div id="respiratory-rate-chart" class="column stat-chart">
+					</div>
+					<div class="column stat-reading">
+						<p class="stat-label stat-label-header text-center">Respiratory Rate</p>
+						<h2 class="text-center">20</h2>
+						<p class="stat-label stat-label-footer text-center">RPM</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+		<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+		<script src="js/c3.min.js"></script>
+
+		<script>
+		 $('.stat-chart').each(function() {
+		   var id = $(this).attr('id');
+		   c3.generate({
+			 bindto: '#' + id,
+			 data: {
+			   columns: [
+				 ['Pulse', 67, 73, 40, 84, 64, 72]
+			   ],
+			   type: 'spline'
+			 },
+			 axis: {
+			   x: {
+				 show: false
+			   }
+			 },
+			 regions: [
+			   { axis: 'y', end: 50, class: 'danger' },
+			   { axis: 'y', start: 50, end: 60, class: 'warning' },
+			   { axis: 'y', start: 80, end: 90, class: 'warning' },
+			   { axis: 'y', start: 90, class: 'danger' }
+			 ],
+			 legend: {
+			   show: false
+			 }
+		   });
+		 });
+		</script>
+	</body>
+</html>
