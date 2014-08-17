@@ -1,0 +1,91 @@
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container">
+		<a class="navbar-brand" href="#">ACME</a>
+		<ol class="breadcrumb navbar-left">
+			<li><a href="#">All Patients</a></li>
+			<li><a href="#">My Patients</a></li>
+			<li><a href="#">{{patient.name}}</a></li>
+		</ol>
+		<button class="btn btn-primary navbar-btn pull-right"><span class="glyphicon glyphicon-plus"></span> Add Reading</button>
+	</div>
+</nav>
+
+<div class="container">
+	<div class="stats-container">
+		<div class="row stat-row header-row">
+			<div class="column">Hello</div>
+			<div class="column">World</div>
+		</div>
+		<div class="row stat-row">
+			<div class="column stat-chart"
+				 ng-model="patient.readings"
+				 data-property="pulse_bpm"
+				 data-on-selected="setSelectedReading(data)"
+				 data-y-axis-min="40.0"
+				 data-y-axis-max="100.0">
+			</div>
+			<div class="column stat-reading">
+				<p class="stat-label stat-label-header text-center">Pulse</p>
+				<h2 class="text-center">{{selectedReading.pulse_bpm}}</h2>
+				<p class="stat-label stat-label-footer text-center">BPM</p>
+			</div>
+		</div>
+		
+		<div class="row stat-row">
+			<div class="column stat-chart"
+				 ng-model="patient.readings"
+				 data-property="temperature_degf"
+				 data-on-selected="setSelectedReading(data)"
+				 data-y-axis-min="95.0"
+				 data-y-axis-max="103.0">
+			</div>
+			<div class="column stat-reading">
+				<p class="stat-label stat-label-header text-center">Temperature</p>
+				<h2 class="text-center">{{selectedReading.temperature_degf}}</h2>
+				<p class="stat-label stat-label-footer text-center">&deg;F</p>
+			</div>
+		</div>
+		
+		<div class="row stat-row">
+			<div class="column stat-chart"
+				 ng-model="patient.readings"
+				 data-property='["blood_pressure_sys", "blood_pressure_dia"]'
+				 data-on-selected="setSelectedReading(data)"
+				 data-y-axis-min="60.0"
+				 data-y-axis-max="160.0">
+			</div>
+			<div class="column stat-reading">
+				<p class="stat-label stat-label-header text-center">Blood Pressure</p>
+				<h2 class="text-center blood-pressure">{{selectedReading.blood_pressure_sys}} / {{selectedReading.blood_pressure_dia}}</h2>
+				<p class="stat-label stat-label-footer text-center">sys / dia</p>
+			</div>
+		</div>
+		
+		<div class="row stat-row">
+			<div class="column stat-chart"
+				 ng-model="patient.readings"
+				 data-property="respiratory_rate_rpm"
+				 data-on-selected="setSelectedReading(data)"
+				 data-y-axis-min="0.0"
+				 data-y-axis-max="30.0">
+			</div>
+			<div class="column stat-reading">
+				<p class="stat-label stat-label-header text-center">Respiratory Rate</p>
+				<h2 class="text-center">{{selectedReading.respiratory_rate_rpm}}</h2>
+				<p class="stat-label stat-label-footer text-center">RPM</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!--
+Temperature
+data-regions='[{ "axis": "y", "end": 96, "class": "danger"}, {"axis": "y", "start": 96, "end": 97.8, "class": "warning" }, { "axis": "y", "start": 99, "end": 100, "class": "warning" }, { "axis": "y", "start": 100, "class": "danger" }]'
+
+Respiratory Rate
+data-regions='[{ "axis": "y", "end": 10, "class": "danger"}, {"axis": "y", "start": 10, "end": 12, "class": "warning" }, { "axis": "y", "start": 17, "end": 20, "class": "warning" }, { "axis": "y", "start": 20, "class": "danger" }]'
+
+Pulse
+data-regions='[{ "axis": "y", "end": 50, "class": "danger" }, {"axis": "y", "start": 50, "end": 60, "class": "warning" }, { "axis": "y", "start": 80, "end": 90, "class": "warning" }, { "axis": "y", "start": 90, "class": "danger" }]'
+-->
