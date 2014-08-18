@@ -27,21 +27,27 @@ body {
       content: ">"; }
 
 .stat-row {
+  display: -webkit-flex;
+  display: flex;
   height: 150px;
   margin: 1px;
-  padding-right: 150px;
   background-color: #E6EAF3; }
-  .stat-row .column {
-    position: relative;
-    float: left;
+  .stat-row > * {
     height: 100%; }
-  .stat-row .stat-chart {
-    width: 100%; }
-  .stat-row .stat-reading {
+  .stat-row .stat-axis {
+    -webkit-flex: 0 0 40px;
+    flex: 0 0 40px;
     background-color: #DCDFEC;
-    border-left: 1px solid #999;
-    width: 150px;
-    margin-right: -150px; }
+    border-right: 1px solid #999; }
+  .stat-row .stat-chart {
+    -webkit-flex: 1;
+    flex: 1;
+    width: 200px; }
+  .stat-row .stat-reading {
+    -webkit-flex: 0 0 150px;
+    flex: 0 0 150px;
+    background-color: #DCDFEC;
+    border-left: 1px solid #999; }
     .stat-row .stat-reading .stat-label {
       text-shadow: 0px 1px 1px #eee;
       font-size: 12px;

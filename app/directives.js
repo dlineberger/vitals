@@ -18,7 +18,7 @@ acmeDirectives.directive('statChart', function() {
 					return null;
 				}
 			}
-			
+
 			var regions = getJsonAttribute(attrs.regions) || [];
 			var property = getJsonAttribute(attrs.property) || [attrs.property];
 			var yAxisMin = parseFloat(attrs.yAxisMin);
@@ -43,6 +43,9 @@ acmeDirectives.directive('statChart', function() {
 						if (scope.onSelected) {
 							scope.onSelected({data: data[item.index]});
 						}
+					},
+					color: function (color, d) {
+						return d.value > 100 ? d3.rgb("#ff0000") : color;
 					}
 				},
 				axis: {

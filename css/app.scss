@@ -36,26 +36,34 @@ body {
 }
 
 .stat-row {
+	display: -webkit-flex;
+	display: flex;
 	height: 150px;
 	margin: 1px;
-	padding-right: 150px;
 	background-color: #E6EAF3;
-	
-	.column {
-		position: relative;
-		float: left;
+
+	& > * {
 		height: 100%;
 	}
 	
+	.stat-axis {
+		-webkit-flex: 0 0 40px;
+		flex: 0 0 40px;
+		background-color: #DCDFEC;
+		border-right: 1px solid #999;
+	}
+	
 	.stat-chart {
-		width: 100%;
+		-webkit-flex: 1;
+		flex: 1;
+		width: 200px;
 	}
 
 	.stat-reading {
+		-webkit-flex: 0 0 150px;
+		flex: 0 0 150px;
 		background-color: #DCDFEC;
 		border-left: 1px solid #999;
-		width: 150px;
-		margin-right: -150px;
 		
 		.stat-label {
 			text-shadow: 0px 1px 1px #eee;

@@ -13,10 +13,12 @@
 <div class="container">
 	<div class="stats-container">
 		<div class="row stat-row header-row">
-			<div class="column">Hello</div>
-			<div class="column">World</div>
+			<div class="stat-axis"></div>
+			<div class="stat-chart"></div>
+			<div class="stat-reading"></div>
 		</div>
 		<div class="row stat-row">
+			<div class="column stat-axis"></div>
 			<div class="column stat-chart"
 				 ng-model="patient.readings"
 				 data-property="pulse_bpm"
@@ -32,6 +34,7 @@
 		</div>
 		
 		<div class="row stat-row">
+			<div class="column stat-axis"></div>
 			<div class="column stat-chart"
 				 ng-model="patient.readings"
 				 data-property="temperature_degf"
@@ -47,6 +50,7 @@
 		</div>
 		
 		<div class="row stat-row">
+			<div class="column stat-axis"></div>
 			<div class="column stat-chart"
 				 ng-model="patient.readings"
 				 data-property='["blood_pressure_sys", "blood_pressure_dia"]'
@@ -62,6 +66,7 @@
 		</div>
 		
 		<div class="row stat-row">
+			<div class="column stat-axis"></div>
 			<div class="column stat-chart"
 				 ng-model="patient.readings"
 				 data-property="respiratory_rate_rpm"
