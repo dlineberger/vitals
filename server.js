@@ -121,7 +121,7 @@ app.get('/api/patients/:id/readings', function(req, res) {
 
 app.use(express.static('public'));
 app.get('/', function (req, res) {
-	res.sendFile(__dirname + '/index.html');
+	res.sendfile(__dirname + '/public/index.html');
 });
 
 var server = app.listen(3000, function() {

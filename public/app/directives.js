@@ -30,8 +30,10 @@ acmeDirectives.directive('c3Chart', function() {
 			var yAxisMax = parseFloat(attrs.yAxisMax);
 			var chartType = attrs.type || 'spline';
 
+			var chart = undefined;
+			
 			var drawChart = function() {
-				c3.generate({
+				chart = c3.generate({
 					bindto: element[0],
 					data: {
 						x_format: '%Y-%m-%dT%H:%M:%S.%LZ',
@@ -44,9 +46,13 @@ acmeDirectives.directive('c3Chart', function() {
 							enabled: true,
 							multiple: false,
 						},
-						onselected: function(item) {
-							console.log("Selected!");
-							console.log();
+						onxgridfocus: function(item) {
+							// hack for all charts to show same focus line
+							var thisFocusLine = $(element[0]).find('line.c3-xgrid-focus');
+							var x1 = thisFocusLine.attr('x1');
+							var x2 = thisFocusLine.attr('x2');
+							$('line.c3-xgrid-focus').attr('x1', x1).attr('x2', x2).css('visibility', 'visible');
+							
 							if (scope.onSelected) {
 								scope.onSelected({data: data[item.index]});
 							}
