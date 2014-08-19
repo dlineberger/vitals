@@ -29,11 +29,13 @@ acmeDirectives.directive('c3Chart', function() {
 			var yAxisMin = parseFloat(attrs.yAxisMin);
 			var yAxisMax = parseFloat(attrs.yAxisMax);
 			var chartType = attrs.type || 'spline';
+			
+			var showFocusLines = function(item) {
 
-			var chart = undefined;
+			}
 			
 			var drawChart = function() {
-				chart = c3.generate({
+				c3.generate({
 					bindto: element[0],
 					data: {
 						x_format: '%Y-%m-%dT%H:%M:%S.%LZ',
@@ -57,6 +59,13 @@ acmeDirectives.directive('c3Chart', function() {
 								scope.onSelected({data: data[item.index]});
 							}
 						},
+						onhidexgridfocus: function() {
+							$('line.c3-xgrid-focus').css('visibility', 'hidden');
+							
+							if (scope.onSelected) {
+								scope.onSelected();
+							}							
+						},
 						color: function (color, d) {
 							return d.value > 100 ? d3.rgb("#ff0000") : color;
 						}
@@ -76,6 +85,13 @@ acmeDirectives.directive('c3Chart', function() {
 					regions: regions,
 					legend: {
 						show: false
+					},
+					tooltip: {
+						contents: function() {
+							// We don't want to disable the tooltip because we then don't get the focus lines.
+							// So, create a dummy tooltip.
+							return "<span></span>";
+						}
 					}
 				});
 			};

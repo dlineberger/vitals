@@ -165,6 +165,7 @@
             __data_selection_multiple = getConfig(['data', 'selection', 'multiple'], true),
         __data_onclick = getConfig(['data', 'onclick'], function () {}),
 		__data_onxgridfocus = getConfig(['data', 'onxgridfocus'], function () {}),
+		__data_onhidexgridfocus = getConfig(['data', 'onhidexgridfocus'], function () {}),
             __data_onmouseover = getConfig(['data', 'onmouseover'], function () {}),
             __data_onmouseout = getConfig(['data', 'onmouseout'], function () {}),
             __data_onselected = getConfig(['data', 'onselected'], function () {}),
@@ -2094,6 +2095,7 @@
         }
         function hideXGridFocus() {
             main.select('line.' + CLASS.xgridFocus).style("visibility", "hidden");
+			__data_onhidexgridfocus.call(c3);
         }
         function generateGridData(type, scale) {
             var gridData = [], xDomain, firstYear, lastYear, i,

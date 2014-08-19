@@ -18,7 +18,11 @@ acmeControllers.controller(
 
 		 $scope.setSelectedReading = function(data) {
 			 $scope.$apply(function() {
-				 $scope.selectedReading = data;
+				 if (data) {
+					 $scope.selectedReading = data;
+				 } else {
+					 $scope.selectedReading = _.last($scope.readings);	 
+				 }
 			 });
 		 };
 
