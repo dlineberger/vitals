@@ -5,6 +5,7 @@
 			<li><a href="#">Patient List</a></li>
 			<li ng-show="patient" class="patient-name">{{patient.name}}</li>
 		</ol>
+		<button ng-show="!patient" class="btn btn-primary navbar-btn pull-right" data-toggle="modal" data-target="#patient-modal"><span class="glyphicon glyphicon-plus"></span> <span class="hideable-text">Add Patient</span></button>
 		<button ng-show="patient" class="btn btn-primary navbar-btn pull-right" data-toggle="modal" data-target="#reading-modal"><span class="glyphicon glyphicon-plus"></span> <span class="hideable-text">Add Reading</span></button>
 		<button ng-show="patient" class="btn btn-default navbar-btn pull-right" data-toggle="modal" data-target="#table-modal"><span class="glyphicon glyphicon-th"></span> <span class="hideable-text">View Vitals Table</span></button>
 	</div>

@@ -54,6 +54,15 @@ body {
 	margin: 1px;
 	background-color: #E6EAF3;
 
+	.dropdown {
+		height: 100%;
+	}
+	
+	.dropdown-toggle {
+		background-color: #DCDFEC;
+		height: 100%;
+	}
+	
 	& > .column {
 		position: relative;
 		height: 100%;
@@ -61,21 +70,20 @@ body {
 
 	.start-date {
 		@extend .chart-label;
-		line-height: 40px;
-		font-size: 20px;
-		color: #fff;
 		float: left;
-		position: absolute;
-		left: 5px;
-		bottom: 0;
+		padding: 0px 5px;
+		line-height: 40px;
+		vertical-align: middle;
+		color: #E6EAF3;
 	}
 
 	.end-date {
 		@extend .chart-label;
 		float: right;
-		position: absolute;
-		right: 10px;
-		bottom: 0;
+		padding: 0px 5px;
+		line-height: 40px;
+		vertical-align: middle;
+		color: #E6EAF3;
 	}
 
 
@@ -97,35 +105,36 @@ body {
 		flex: 0 0 150px;
 		background-color: #DCDFEC;
 		border-left: 1px solid #999;
+	}
 
-		.stat-label {
-			@extend .chart-label;
-			position: absolute;
-			left: 0;
-			right: 0;
-			margin: 0 auto;
-		}
+	.stat-label {
+		@extend .chart-label;
+		position: absolute;
+		left: 0;
+		right: 0;
+		margin: 0 auto;
+	}
 
-		.stat-label-header {
-			top: 4px;
-		}
+	.stat-label-header {
+		top: 4px;
+	}
 
-		.stat-label-footer {
-			bottom: 4px;
-		}
+	.stat-label-footer {
+		bottom: 4px;
+	}
 
-		h2 {
-			margin: 0;
-			font-size: 48px;
-			font-weight: bold;
-			line-height: 150px;
-			vertical-align: middle;
+	h2 {
+		margin: 0;
+		font-size: 48px;
+		font-weight: bold;
+		line-height: 150px;
+		vertical-align: middle;
 
-			&.blood-pressure {
-				font-size: 36px;
-			}
+		&.blood-pressure {
+			font-size: 36px;
 		}
 	}
+
 }
 
 .header-row {
@@ -165,7 +174,7 @@ body {
 	}
 
 	.input-group-addon {
-		width: 4em;
+		width: 5em;
 		float: left;
 		line-height: 1.42857143;
 	}
