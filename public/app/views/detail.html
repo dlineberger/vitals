@@ -21,7 +21,7 @@
 				<span class="start-date">{{readings[0].timestamp | date }}</span>
 				<span class="end-date">{{readings[readings.length - 1].timestamp | date }}</span>
 			</div>
-			<div class="column stat-reading header-interactive">{{selectedReading.timestamp | date}}</div>
+			<div class="column stat-reading header-interactive">{{selectedReading.timestamp | date:'short' }}</div>
 		</div>
 		<div class="row stat-row">
 			<div class="column stat-axis">

@@ -35,7 +35,11 @@ body {
 	text-align: center;
 }
 
-.navbar {
+.acme-navbar {
+	min-height: 50px;
+	margin-bottom: 20px;
+	border: 1px solid transparent;
+
 	background-color: #E6EAF3;
 
 	ol.breadcrumb {
@@ -165,12 +169,31 @@ body {
 
 }
 
+.panel {
+	padding: 0;
+}
+
 .patient-name {
 	font-size: 1.2em;
 	font-weight: bold;
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 320px) {
+	.stat-axis {
+		display: none;
+	}
+
+	.stat-chart {
+		display: none;
+	}
+
+	.stat-reading {
+		-webkit-flex: 1 !important;
+		flex: 1 !important;
+	}
+}
+
+@media only screen and (max-width: 700px) {
 	.hideable-text {
 		display: none;
 	}
