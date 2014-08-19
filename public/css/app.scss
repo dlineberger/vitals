@@ -173,9 +173,19 @@ body {
 
 }
 
-.panel {
+.panel-default {
 	padding: 0;
+
+	.panel-heading {
+		background-color: #8994B8;
+		color: #fff;
+	}
+
+	.list-group-item {
+		background-color: #E6EAF3;
+	}
 }
+
 
 .patient-name {
 	font-size: 1.2em;

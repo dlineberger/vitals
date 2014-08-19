@@ -41,8 +41,7 @@ acmeDirectives.directive('c3Chart', function() {
 							value: property
 						},
 						selection: {
-							enabled: true,
-							multiple: false,
+							enabled: false
 						},
 						onxgridfocus: function(item) {
 							// hack for all charts to show same focus line

@@ -112,8 +112,13 @@ body {
 .warning {
   fill: yellow; }
 
-.panel {
+.panel-default {
   padding: 0; }
+  .panel-default .panel-heading {
+    background-color: #8994B8;
+    color: #fff; }
+  .panel-default .list-group-item {
+    background-color: #E6EAF3; }
 
 .patient-name {
   font-size: 1.2em;
