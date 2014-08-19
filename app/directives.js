@@ -1,6 +1,6 @@
 var acmeDirectives = angular.module('acmeDirectives', []);
 
-acmeDirectives.directive('statChart', function() {
+acmeDirectives.directive('c3Chart', function() {
 	return {
 		restrict: 'C',
 		transclude: true,
@@ -28,9 +28,10 @@ acmeDirectives.directive('statChart', function() {
 			c3.generate({
 				bindto: element[0],
 				data: {
+					x_format: '%Y-%m-%dT%H:%M:%S.%LZ',
 					json: data,
-					type: chartType,
 					keys: {
+						x: 'timestamp',
 						value: property
 					},
 					selection: {
@@ -50,6 +51,7 @@ acmeDirectives.directive('statChart', function() {
 				},
 				axis: {
 					x: {
+						type: 'timeseries',
 						show: false
 					},
 					y: {

@@ -13,6 +13,12 @@ body {
 .container-fluid {
   padding: 0 10px; }
 
+.chart-label, .stat-row .start-date, .header-row .start-date, .stat-row .end-date, .header-row .end-date, .stat-row .stat-reading .stat-label, .header-row .stat-reading .stat-label {
+  text-shadow: 0px 1px 1px #eee;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px; }
+
 .navbar {
   background-color: #E6EAF3;
   box-shadow: 0px 5px 10px 0px #323232; }
@@ -25,54 +31,64 @@ body {
     background-color: #E6EAF3; }
     .navbar ol.breadcrumb li + li:before {
       content: ">"; }
+  .navbar button {
+    margin-left: 10px; }
 
-.stat-row {
+.stat-row, .header-row {
   display: -webkit-flex;
   display: flex;
   height: 150px;
   margin: 1px;
   background-color: #E6EAF3; }
-  .stat-row > * {
+  .stat-row > .column, .header-row > .column {
+    position: relative;
     height: 100%; }
-  .stat-row .stat-axis {
+  .stat-row .start-date, .header-row .start-date {
+    line-height: 40px;
+    font-size: 20px;
+    color: #fff;
+    float: left;
+    position: absolute;
+    left: 5px;
+    bottom: 0; }
+  .stat-row .end-date, .header-row .end-date {
+    float: right;
+    position: absolute;
+    right: 10px;
+    bottom: 0; }
+  .stat-row .stat-axis, .header-row .stat-axis {
     -webkit-flex: 0 0 40px;
     flex: 0 0 40px;
     background-color: #DCDFEC;
     border-right: 1px solid #999; }
-  .stat-row .stat-chart {
+  .stat-row .stat-chart, .header-row .stat-chart {
     -webkit-flex: 1;
     flex: 1;
     width: 200px; }
-  .stat-row .stat-reading {
+  .stat-row .stat-reading, .header-row .stat-reading {
     -webkit-flex: 0 0 150px;
     flex: 0 0 150px;
     background-color: #DCDFEC;
     border-left: 1px solid #999; }
-    .stat-row .stat-reading .stat-label {
-      text-shadow: 0px 1px 1px #eee;
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
+    .stat-row .stat-reading .stat-label, .header-row .stat-reading .stat-label {
       position: absolute;
       left: 0;
       right: 0;
       margin: 0 auto; }
-    .stat-row .stat-reading .stat-label-header {
-      position: absolute;
+    .stat-row .stat-reading .stat-label-header, .header-row .stat-reading .stat-label-header {
       top: 4px; }
-    .stat-row .stat-reading .stat-label-footer {
+    .stat-row .stat-reading .stat-label-footer, .header-row .stat-reading .stat-label-footer {
       bottom: 4px; }
-    .stat-row .stat-reading h2 {
+    .stat-row .stat-reading h2, .header-row .stat-reading h2 {
       margin: 0;
       font-size: 48px;
       font-weight: bold;
       line-height: 150px;
       vertical-align: middle; }
-      .stat-row .stat-reading h2.blood-pressure {
+      .stat-row .stat-reading h2.blood-pressure, .header-row .stat-reading h2.blood-pressure {
         font-size: 36px; }
 
 .header-row {
-  @inherit .stat-row;
   background-color: #8994B8;
   height: 40px; }
 
@@ -82,5 +98,16 @@ body {
 .warning {
   fill: yellow; }
 
-.btn {
-  background-color: #4AA0F3; }
+.patient-name {
+  font-size: 1.2em;
+  font-weight: bold; }
+
+@media only screen and (max-width: 500px) {
+  .hideable-text {
+    display: none; } }
+#reading-modal .input-group .form-control {
+  width: 6em; }
+#reading-modal .input-group-addon {
+  width: 4em;
+  float: left;
+  line-height: 1.42857143; }

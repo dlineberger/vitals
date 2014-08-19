@@ -6,7 +6,7 @@ body {
 	font-family: 'Helvetica Neue', 'Helvetica', sans-serif;
 	height: 100%;
 	background-repeat: no-repeat;
-    background-attachment: fixed;
+	background-attachment: fixed;
 	padding: 70px 10px;
 	background-image: linear-gradient(to bottom, #515A77 0%, #616B8E 100%);
 	color: #686F8A;
@@ -16,9 +16,17 @@ body {
 	padding: 0 10px;
 }
 
+.chart-label {
+	text-shadow: 0px 1px 1px #eee;
+	font-size: 12px;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+}
+
+
 .navbar {
 	background-color: #E6EAF3;
-	
+
 	ol.breadcrumb {
 		margin-top: 0;
 		margin-bottom: 0;
@@ -26,10 +34,14 @@ body {
 		line-height: 50px;
 		padding: 0 15px;
 		background-color: #E6EAF3;
-		
+
 		li+li:before {
 			content: ">";
 		}
+	}
+
+	button {
+		margin-left: 10px;
 	}
 
 	box-shadow: 0px 5px 10px 0px rgba(50, 50, 50, 1);
@@ -42,17 +54,38 @@ body {
 	margin: 1px;
 	background-color: #E6EAF3;
 
-	& > * {
+	& > .column {
+		position: relative;
 		height: 100%;
 	}
-	
+
+	.start-date {
+		@extend .chart-label;
+		line-height: 40px;
+		font-size: 20px;
+		color: #fff;
+		float: left;
+		position: absolute;
+		left: 5px;
+		bottom: 0;
+	}
+
+	.end-date {
+		@extend .chart-label;
+		float: right;
+		position: absolute;
+		right: 10px;
+		bottom: 0;
+	}
+
+
 	.stat-axis {
 		-webkit-flex: 0 0 40px;
 		flex: 0 0 40px;
 		background-color: #DCDFEC;
 		border-right: 1px solid #999;
 	}
-	
+
 	.stat-chart {
 		-webkit-flex: 1;
 		flex: 1;
@@ -64,12 +97,9 @@ body {
 		flex: 0 0 150px;
 		background-color: #DCDFEC;
 		border-left: 1px solid #999;
-		
+
 		.stat-label {
-			text-shadow: 0px 1px 1px #eee;
-			font-size: 12px;
-			text-transform: uppercase;
-			letter-spacing: 1px;
+			@extend .chart-label;
 			position: absolute;
 			left: 0;
 			right: 0;
@@ -77,7 +107,6 @@ body {
 		}
 
 		.stat-label-header {
-			position: absolute;
 			top: 4px;
 		}
 
@@ -100,24 +129,44 @@ body {
 }
 
 .header-row {
-	@inherit .stat-row;
+	@extend .stat-row;
 	background-color: #8994B8;
 	height: 40px;
 }
 
-
 .danger {
-  fill: red;
+	fill: red;
 }
 
 .warning {
-  fill: yellow;
+	fill: yellow;
 }
 
 .normal {
 
 }
 
-.btn {
-	background-color: #4AA0F3;
+.patient-name {
+	font-size: 1.2em;
+	font-weight: bold;
+}
+
+@media only screen and (max-width: 500px) {
+	.hideable-text {
+		display: none;
+	}
+}
+
+#reading-modal {
+	.input-group {
+		.form-control {
+			width: 6em;
+		}
+	}
+
+	.input-group-addon {
+		width: 4em;
+		float: left;
+		line-height: 1.42857143;
+	}
 }

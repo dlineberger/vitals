@@ -1,0 +1,14 @@
+<div ng-include="'app/views/partials/header.html'"></div>
+
+<div class="container">
+	<div class="panel panel-default col-md-8 col-md-offset-2">
+		<div class="panel-heading">
+			<h3 class="panel-title">Patient List</h3>
+		</div>
+		<ul class="list-group">
+			<li ng-repeat="patient in patients"	class="list-group-item">
+				<a ng-href="#/patients/{{patient._id}}">{{patient.name}}</a>
+			</li>
+		</ul>
+	</div>
+</div>

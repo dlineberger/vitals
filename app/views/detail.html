@@ -1,26 +1,19 @@
-<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-	<div class="container">
-		<a class="navbar-brand" href="#">ACME</a>
-		<ol class="breadcrumb navbar-left">
-			<li><a href="#">All Patients</a></li>
-			<li><a href="#">My Patients</a></li>
-			<li><a href="#">{{patient.name}}</a></li>
-		</ol>
-		<button class="btn btn-primary navbar-btn pull-right"><span class="glyphicon glyphicon-plus"></span> Add Reading</button>
-	</div>
-</nav>
+<div ng-include="'app/views/partials/header.html'"></div>
 
 <div class="container">
 	<div class="stats-container">
 		<div class="row stat-row header-row">
-			<div class="stat-axis"></div>
-			<div class="stat-chart"></div>
-			<div class="stat-reading"></div>
+			<div class="column stat-axis"><button class="btn"><i class="glyphicon glyphicon-calendar"></i></button></div>
+			<div class="column stat-chart">
+				<span class="start-date">{{readings[0].timestamp | date }}</span>
+				<span class="end-date">{{readings[9].timestamp | date }}</span>
+			</div>
+			<div class="column stat-reading">{{selectedReading.timestamp | date}}</div>
 		</div>
 		<div class="row stat-row">
 			<div class="column stat-axis"></div>
-			<div class="column stat-chart"
-				 ng-model="patient.readings"
+			<div class="column stat-chart c3-chart"
+				 ng-model="readings"
 				 data-property="pulse_bpm"
 				 data-on-selected="setSelectedReading(data)"
 				 data-y-axis-min="40.0"
@@ -32,11 +25,11 @@
 				<p class="stat-label stat-label-footer text-center">BPM</p>
 			</div>
 		</div>
-		
+
 		<div class="row stat-row">
 			<div class="column stat-axis"></div>
-			<div class="column stat-chart"
-				 ng-model="patient.readings"
+			<div class="column stat-chart c3-chart"
+				 ng-model="readings"
 				 data-property="temperature_degf"
 				 data-on-selected="setSelectedReading(data)"
 				 data-y-axis-min="95.0"
@@ -48,11 +41,11 @@
 				<p class="stat-label stat-label-footer text-center">&deg;F</p>
 			</div>
 		</div>
-		
+
 		<div class="row stat-row">
 			<div class="column stat-axis"></div>
-			<div class="column stat-chart"
-				 ng-model="patient.readings"
+			<div class="column stat-chart c3-chart"
+				 ng-model="readings"
 				 data-property='["blood_pressure_sys", "blood_pressure_dia"]'
 				 data-on-selected="setSelectedReading(data)"
 				 data-y-axis-min="60.0"
@@ -64,11 +57,11 @@
 				<p class="stat-label stat-label-footer text-center">sys / dia</p>
 			</div>
 		</div>
-		
+
 		<div class="row stat-row">
 			<div class="column stat-axis"></div>
-			<div class="column stat-chart"
-				 ng-model="patient.readings"
+			<div class="column stat-chart c3-chart"
+				 ng-model="readings"
 				 data-property="respiratory_rate_rpm"
 				 data-on-selected="setSelectedReading(data)"
 				 data-y-axis-min="0.0"
@@ -83,6 +76,95 @@
 	</div>
 </div>
 
+<div class="modal fade" id="reading-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-sm">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+				<h4 class="modal-title" id="myModalLabel">Add Vitals for {{patient.name}}</h4>
+			</div>
+			<div class="modal-body">
+				<form class="form-horizontal" role="form">
+					<div class="form-group">
+						<label for="form_pulse" class="col-sm-5 control-label">Pulse</label>
+						<div class="col-sm-7 input-group">
+							<input type="number" class="form-control" id="form_pulse" min="0">
+							<span class="input-group-addon">BPM</span>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="form_temp" class="col-sm-5 control-label">Temperature</label>
+						<div class="col-sm-7 input-group">
+							<input type="number" class="form-control" id="form_temp" min="0">
+							<span class="input-group-addon">&deg;F</span>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="form_bp_sys" class="col-sm-5 control-label">Systolic Blood Pressure</label>
+						<div class="col-sm-7 input-group">
+							<input type="number" class="form-control" id="form_bp_sys" min="0">
+							<span class="input-group-addon">?</span>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="form_bp_dia" class="col-sm-5 control-label">Diastolic Blood Pressure</label>
+						<div class="col-sm-7 input-group">
+							<input type="number" class="form-control" id="form_bp_dia" min="0">
+							<span class="input-group-addon">?</span>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="form_resp" class="col-sm-5 control-label">Respiratory Rate</label>
+						<div class="col-sm-7 input-group">
+							<input type="number" class="form-control" id="form_resp" min="0">
+							<span class="input-group-addon">RPM</span>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+				<button type="button" class="btn btn-primary" data-dismiss="modal">Add</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="table-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+				<h4 class="modal-title" id="myModalLabel">Vitals for {{patient.name}}</h4>
+			</div>
+			<div class="modal-body">
+				<div class="table-responsive">
+					<table class="table table-striped table-hover">
+						<tr>
+							<th>Date</th>
+							<th>Pulse</th>
+							<th>Temperature</th>
+							<th>Blood Pressure (Systolic)</th>
+							<th>Blood Pressure (Diastolic)</th>
+							<th>Respiratory Rate</th>
+						</tr>
+						<tr ng-repeat="reading in readings | orderBy:timestamp">
+							<th>{{reading.timestamp}}</th>
+							<th>{{reading.pulse_bpm}}</th>
+							<th>{{reading.temperature_degf}}</th>
+							<th>{{reading.blood_pressure_sys}}</th>
+							<th>{{reading.blood_pressure_dia}}</th>
+							<th>{{reading.respiratory_rate_rpm}}</th>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
 
 <!--
 Temperature
