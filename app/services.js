@@ -112,6 +112,8 @@ acmeServices.factory('Reading', function() {
 					respiratory_rate_rpm: 22
 				}
 			];
+		},
+		post: function(id, reading) {
 		}
 	};
 });

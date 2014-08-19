@@ -3,25 +3,25 @@
 <div class="container">
 	<div class="stats-container">
 		<div class="row stat-row header-row">
-			<div class="column stat-axis">
+			<div class="column stat-axis header-interactive">
 				<div class="dropdown">
-					<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+					<button class="btn btn-default dropdown-toggle" type="button" id="time-dropdown" data-toggle="dropdown">
 						<i class="glyphicon glyphicon-calendar"></i>
 					</button>
-					<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-						<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
-						<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
-						<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
-						<li role="presentation" class="divider"></li>
-						<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+					<ul class="dropdown-menu" role="menu" aria-labelledby="time-dropdown">
+						<li role="presentation"><a role="menuitem" href="" tabindex="-1" ng-click="setDateFilterDays(1)">Last 24 Hours</a></li>
+						<li role="presentation"><a role="menuitem" href="" tabindex="-1" ng-click="setDateFilterDays(7)">Last Week</a></li>
+						<li role="presentation"><a role="menuitem" href="" tabindex="-1" ng-click="setDateFilterDays(30)">Last 30 Days</a></li>
+						<li role="presentation"><a role="menuitem" href="" tabindex="-1" ng-click="setDateFilterDays(365)">Last Year</a></li>
+						<li role="presentation"><a role="menuitem" href="" tabindex="-1" ng-click="setDateFilterDays()">All Time</a></li>
 					</ul>
 				</div>
 			</div>
 			<div class="column stat-chart">
 				<span class="start-date">{{readings[0].timestamp | date }}</span>
-				<span class="end-date">{{readings[9].timestamp | date }}</span>
+				<span class="end-date">{{readings[readings.length - 1].timestamp | date }}</span>
 			</div>
-			<div class="column stat-reading chart-label">{{selectedReading.timestamp | date}}</div>
+			<div class="column stat-reading header-interactive">{{selectedReading.timestamp | date}}</div>
 		</div>
 		<div class="row stat-row">
 			<div class="column stat-axis">

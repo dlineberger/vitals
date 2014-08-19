@@ -13,11 +13,19 @@ body {
 .container-fluid {
   padding: 0 10px; }
 
-.chart-label, .stat-row .start-date, .header-row .start-date, .stat-row .end-date, .header-row .end-date, .stat-row .stat-label, .header-row .stat-label {
-  text-shadow: 0px 1px 1px #eee;
+.chart-label, .header-label, .header-interactive, .stat-row .start-date, .header-row .start-date, .stat-row .end-date, .header-row .end-date, .stat-row .stat-label, .header-row .stat-label {
   font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 1px; }
+
+.header-label, .header-interactive, .stat-row .start-date, .header-row .start-date, .stat-row .end-date, .header-row .end-date {
+  line-height: 40px;
+  vertical-align: middle;
+  color: #E6EAF3; }
+
+.header-interactive {
+  background-color: #428bca !important;
+  text-align: center; }
 
 .navbar {
   background-color: #E6EAF3;
@@ -41,25 +49,19 @@ body {
   margin: 1px;
   background-color: #E6EAF3; }
   .stat-row .dropdown, .header-row .dropdown {
-    height: 100%; }
+    height: 100%;
+    background-color: inherit; }
   .stat-row .dropdown-toggle, .header-row .dropdown-toggle {
-    background-color: #DCDFEC;
+    color: #fff;
+    background-color: inherit;
     height: 100%; }
   .stat-row > .column, .header-row > .column {
     position: relative;
     height: 100%; }
   .stat-row .start-date, .header-row .start-date {
-    float: left;
-    padding: 0px 5px;
-    line-height: 40px;
-    vertical-align: middle;
-    color: #E6EAF3; }
+    float: left; }
   .stat-row .end-date, .header-row .end-date {
-    float: right;
-    padding: 0px 5px;
-    line-height: 40px;
-    vertical-align: middle;
-    color: #E6EAF3; }
+    float: right; }
   .stat-row .stat-axis, .header-row .stat-axis {
     -webkit-flex: 0 0 40px;
     flex: 0 0 40px;
@@ -95,6 +97,8 @@ body {
 .header-row {
   background-color: #8994B8;
   height: 40px; }
+  .header-row .stat-chart {
+    padding: 0px 5px; }
 
 .danger {
   fill: red; }

@@ -17,12 +17,23 @@ body {
 }
 
 .chart-label {
-	text-shadow: 0px 1px 1px #eee;
 	font-size: 12px;
 	text-transform: uppercase;
 	letter-spacing: 1px;
 }
 
+.header-label {
+	@extend .chart-label;
+	line-height: 40px;
+	vertical-align: middle;
+	color: #E6EAF3;
+}
+
+.header-interactive {
+	@extend .header-label;
+	background-color: #428bca !important;
+	text-align: center;
+}
 
 .navbar {
 	background-color: #E6EAF3;
@@ -56,34 +67,28 @@ body {
 
 	.dropdown {
 		height: 100%;
+		background-color: inherit;
 	}
-	
+
 	.dropdown-toggle {
-		background-color: #DCDFEC;
+		color: #fff;
+		background-color: inherit;
 		height: 100%;
 	}
-	
+
 	& > .column {
 		position: relative;
 		height: 100%;
 	}
 
 	.start-date {
-		@extend .chart-label;
+		@extend .header-label;
 		float: left;
-		padding: 0px 5px;
-		line-height: 40px;
-		vertical-align: middle;
-		color: #E6EAF3;
 	}
 
 	.end-date {
-		@extend .chart-label;
+		@extend .header-label;
 		float: right;
-		padding: 0px 5px;
-		line-height: 40px;
-		vertical-align: middle;
-		color: #E6EAF3;
 	}
 
 
@@ -141,6 +146,11 @@ body {
 	@extend .stat-row;
 	background-color: #8994B8;
 	height: 40px;
+
+	.stat-chart {
+		padding: 0px 5px;
+	}
+
 }
 
 .danger {
