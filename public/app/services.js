@@ -27,10 +27,10 @@ acmeServices.factory('Patient', function($http) {
 				});
 		},
 		create: function(patient, callback) {
-			return $http.post('/api/patients', requirement)
-				.success(function() {
+			return $http.post('/api/patients', patient)
+				.success(function(data) {
 					if (callback !== undefined) {
-						callback();
+						callback(data);
 					}
 				});
 		},

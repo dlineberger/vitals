@@ -22,6 +22,19 @@ acmeControllers.controller(
 		 };
 	 }]);
 
+acmeControllers.controller(
+	'PatientEditCtrl',
+	['$scope', '$routeParams', 'Patient',
+	 function($scope, $routeParams, Patient) {
+		 $scope.patient = { name: {} };
+
+		 $scope.addPatient = function(patient) {
+			 Patient.create(patient, function(savedPatient) {
+				 $scope.patients.push(savedPatient);
+			 });
+		 };
+	 }]);
+
 
 acmeControllers.controller(
 	'PatientDetailCtrl',
