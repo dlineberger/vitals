@@ -47,7 +47,13 @@ acmeServices.factory('Reading', function($http) {
 					return [];
 				});
 		},
-		post: function(id, reading) {
+		create: function(patientId, reading, callback) {
+			return $http.post('/api/patients/' + patientId + '/readings', reading)
+				.success(function(data) {
+					if (callback !== undefined) {
+						callback(data);
+					}
+				});
 		}
 	};
 });

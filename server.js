@@ -3,10 +3,10 @@ var express = require('express');
 var app = express();
 
 var patients = [
-	{ _id: 0, name: 'David Lineberger' },
-	{ _id: 1, name: 'Wanwisa Lineberger' },
-	{ _id: 2, name: 'John Doe' },
-	{ _id: 3, name: 'Jane Doe' }
+	{ _id: 0, name: {first: 'David', last: 'Lineberger' }},
+	{ _id: 1, name: {first: 'Wanwisa', last: 'Lineberger' }},
+	{ _id: 2, name: {first:'John', last:'Doe' }},
+	{ _id: 3, name: {first:'Jane', last:'Doe' }}
 ];
 
 var readings = [
@@ -100,6 +100,8 @@ var readings = [
 	}
 ];
 
+app.use(express.json());
+
 app.get('/api/patients', function(req, res) {
 	res.json(patients);
 });
@@ -116,6 +118,13 @@ app.get('/api/patients/:id', function(req, res) {
 
 app.get('/api/patients/:id/readings', function(req, res) {
 	res.json(readings);
+});
+
+app.post('/api/patients/:id/readings', function(req, res) {
+	var reading = req.body;
+	reading.timestamp = JSON.parse(JSON.stringify(new Date())); // Hack to get the JSON date format
+	readings.push(reading);
+	res.json(reading);
 });
 
 

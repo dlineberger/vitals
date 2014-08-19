@@ -10,6 +10,20 @@ acmeControllers.controller(
 	 }]);
 
 acmeControllers.controller(
+	'ReadingEditCtrl',
+	['$scope', '$routeParams', 'Reading',
+	 function($scope, $routeParams, Reading) {
+		 $scope.reading = {};
+
+		 $scope.addReading = function(reading) {
+			 Reading.create($routeParams.patientId, reading, function(savedReading) {
+				 $scope.readings.push(savedReading);
+			 });
+		 };
+	 }]);
+
+
+acmeControllers.controller(
 	'PatientDetailCtrl',
 	['$scope', '$routeParams', 'patient', 'readings',
 	 function($scope, $routeParams, patient, readings) {
@@ -38,10 +52,7 @@ acmeControllers.controller(
 			 });
 		 };
 
-		 $scope.addReading = function(reading) {
-			 console.log("adding reading.");
-			 //Reading.post($routeParams.patientId, reading);
-		 };
+
 
 		 $scope.setDateFilterDays();
 

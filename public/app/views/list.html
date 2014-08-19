@@ -6,8 +6,8 @@
 			<h3 class="panel-title">Patient List</h3>
 		</div>
 		<ul class="list-group">
-			<li ng-repeat="patient in patients"	class="list-group-item">
-				<a ng-href="#/patients/{{patient._id}}">{{patient.name}}</a>
+			<li ng-repeat="patient in patients | orderBy:'name.last'" class="list-group-item">
+				<a ng-href="#/patients/{{patient._id}}">{{patient.name.first}} {{patient.name.last}}</a>
 			</li>
 		</ul>
 	</div>

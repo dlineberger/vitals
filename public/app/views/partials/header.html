@@ -3,7 +3,7 @@
 		<a class="navbar-brand hideable-text" href="#">ACME</a>
 		<ol class="breadcrumb pull-left">
 			<li><a href="#"><span class="hideable-text">Patient</span> List</a></li>
-			<li ng-show="patient" class="patient-name">{{patient.name}}</li>
+			<li ng-show="patient" class="patient-name"><span class="hideable-text">{{patient.name.first}}</span> {{patient.name.last}}</li>
 		</ol>
 		<button ng-show="!patient" class="btn btn-primary navbar-btn pull-right" data-toggle="modal" data-target="#patient-modal"><span class="glyphicon glyphicon-plus"></span> <span class="hideable-text">Add Patient</span></button>
 		<button ng-show="patient" class="btn btn-primary navbar-btn pull-right" data-toggle="modal" data-target="#reading-modal"><span class="glyphicon glyphicon-plus"></span> <span class="hideable-text">Add Reading</span></button>

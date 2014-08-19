@@ -19,7 +19,7 @@ acmeDirectives.directive('c3Chart', function() {
 				}
 			}
 
-			scope.$watch('ngModel', function() {
+			scope.$watchCollection('ngModel', function() {
 				data = scope.ngModel;
 				drawChart();
 			});
@@ -29,10 +29,6 @@ acmeDirectives.directive('c3Chart', function() {
 			var yAxisMin = parseFloat(attrs.yAxisMin);
 			var yAxisMax = parseFloat(attrs.yAxisMax);
 			var chartType = attrs.type || 'spline';
-			
-			var showFocusLines = function(item) {
-
-			}
 			
 			var drawChart = function() {
 				c3.generate({

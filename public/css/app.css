@@ -13,6 +13,9 @@ body {
 .container-fluid {
   padding: 0 10px; }
 
+.main-container {
+  margin-bottom: 20px; }
+
 .chart-label, .header-label, .header-interactive, .stat-row .start-date, .header-row .start-date, .stat-row .end-date, .header-row .end-date, .stat-row .stat-label, .header-row .stat-label {
   font-size: 12px;
   text-transform: uppercase;
