@@ -93,7 +93,7 @@ acmeDirectives.directive('c3Chart', function($filter) {
 						},
 						color: function (color, d) {
 							
-							var red = d3.rgb("#ff0000");
+							var red = d3.rgb("#c9302c");
 							switch (d.id) {
 							case 'pulse_bpm':
 								return d.value < 40 || d.value > 130 ? red : color;
