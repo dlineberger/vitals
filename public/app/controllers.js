@@ -3,10 +3,44 @@
 var acmeControllers = angular.module('acmeControllers', []);
 
 acmeControllers.controller(
+	'MainCtrl',
+	['$scope', '$timeout',
+	 function($scope, $timeout) {
+		 var socket = io.connect('http://' + window.location.hostname);
+		 socket.on('/patient', function(patient) {
+			 console.log('received new patient');
+			 $timeout(function() {
+				 $scope.$broadcast('patient', patient);
+			 });
+		 });
+		 socket.on('/reading', function(reading) {
+			 console.log('received new reading');
+			 $timeout(function() {
+				 $scope.$broadcast("reading", reading);
+			 });
+		 });
+
+		 socket.on('connect', function() {
+			 $scope.socketId = this.socket.sessionid;
+			 console.log("connect: " + this.socket.sessionid);
+			 socket.emit('subscribe', {
+				 topic: '/patient'
+			 });
+			 socket.emit('subscribe', {
+				 topic: '/reading'
+			 });
+		 });
+	 }]);
+
+acmeControllers.controller(
 	'PatientListCtrl',
 	['$scope','patients',
 	 function($scope, patients) {
 		 $scope.patients = patients;
+
+		 $scope.$on('patient', function(event, patient) {
+			 $scope.patients.push(patient);
+		 });
 	 }]);
 
 acmeControllers.controller(
@@ -21,16 +55,16 @@ acmeControllers.controller(
 		 $scope.isInvalid = function() {
 			 return $scope.reading.pulse_bpm === undefined || $scope.reading.pulse_bpm < 0
 				 || $scope.reading.temperature_degf === undefined || $scope.reading.temperature_degf < 0
-			 	 || $scope.reading.blood_pressure_sys === undefined || $scope.reading.blood_pressure_sys < 0
-			 	 || $scope.reading.blood_pressure_dia === undefined || $scope.reading.blood_pressure_dia < 0
-			 	 || $scope.reading.respiratory_rate_rpm === undefined || $scope.reading.respiratory_rate_rpm < 0;
-			 
+				 || $scope.reading.blood_pressure_sys === undefined || $scope.reading.blood_pressure_sys < 0
+				 || $scope.reading.blood_pressure_dia === undefined || $scope.reading.blood_pressure_dia < 0
+				 || $scope.reading.respiratory_rate_rpm === undefined || $scope.reading.respiratory_rate_rpm < 0;
+
 		 }
 
 		 $scope.addReading = function(reading) {
-			 Reading.create($routeParams.patientId, reading, function(savedReading) {
+			 Reading.create($routeParams.patientId, reading, $scope.socketId, function(savedReading) {
 				 $scope.readings.push(savedReading);
-				 $scope.setSelectedReading();
+				 $scope.selectedReading = savedReading;
 				 $scope.reset();
 			 });
 		 };
@@ -59,7 +93,7 @@ acmeControllers.controller(
 		 }
 
 		 $scope.addPatient = function(patient) {
-			 Patient.create(patient, function(savedPatient) {
+			 Patient.create(patient, $scope.socketId, function(savedPatient) {
 				 $scope.patients.push(savedPatient);
 				 $scope.reset();
 			 });
@@ -76,6 +110,12 @@ acmeControllers.controller(
 		 $scope.patient = patient;
 		 $scope.allReadings = _.sortBy(readings, 'timestamp');
 
+		 $scope.$on('reading', function(event, reading) {
+			 if (reading.patient_id === $scope.patient._id) {
+				 $scope.readings.push(reading);
+			 }
+		 });
+		 
 		 $scope.setSelectedReading = function(data) {
 			 $scope.$apply(function() {
 				 if (data) {

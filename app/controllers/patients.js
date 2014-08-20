@@ -1,4 +1,6 @@
 var mongoose = require('mongoose');
+var socketio = require('../socketio');
+
 Patient = mongoose.model('Patient');
 
 // Load the patient object when :id specified
@@ -31,6 +33,7 @@ exports.create = function(req, res) {
 				error: 'Patient already exists'
 			});
 		} else {
+			socketio.send('/patient', patient, req.headers['x-socket-client-id']);
 			res.json(patient);
 		}
 	});

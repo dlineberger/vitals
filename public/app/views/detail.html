@@ -113,39 +113,39 @@
 				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 				<h4 class="modal-title" id="myModalLabel">Add Vitals for {{patient.name.first}} {{patient.name.last}}</h4>
 			</div>
-			<div class="modal-body">
-				<form name="reading-form" class="form-horizontal" role="form">
+			<div class="modal-body form-horiontal">
+				<form name="reading-form" role="form">
 					<div class="form-group">
-						<label for="form_pulse" class="col-sm-5 control-label">Pulse</label>
-						<div class="col-sm-7 input-group">
+						<label for="form_pulse" class="col-xs-5 control-label">Pulse</label>
+						<div class="col-xs-7 input-group">
 							<input type="number" ng-model="reading.pulse_bpm" class="form-control" id="form_pulse" min="0">
 							<span class="input-group-addon">BPM</span>
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="form_temp" class="col-sm-5 control-label">Temperature</label>
-						<div class="col-sm-7 input-group">
+						<label for="form_temp" class="col-xs-5 control-label">Temperature</label>
+						<div class="col-xs-7 input-group">
 							<input type="number" ng-model="reading.temperature_degf" class="form-control" id="form_temp" min="0">
 							<span class="input-group-addon">&deg;F</span>
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="form_bp_sys" class="col-sm-5 control-label">Systolic Blood Pressure</label>
-						<div class="col-sm-7 input-group">
+						<label for="form_bp_sys" class="col-xs-5 control-label">Sys. Blood Pressure</label>
+						<div class="col-xs-7 input-group">
 							<input type="number" ng-model="reading.blood_pressure_sys" class="form-control" id="form_bp_sys" min="0">
 							<span class="input-group-addon">mm Hg</span>
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="form_bp_dia" class="col-sm-5 control-label">Diastolic Blood Pressure</label>
-						<div class="col-sm-7 input-group">
+						<label for="form_bp_dia" class="col-xs-5 control-label">Dia. Blood Pressure</label>
+						<div class="col-xs-7 input-group">
 							<input type="number" ng-model="reading.blood_pressure_dia" class="form-control" id="form_bp_dia" min="0">
 							<span class="input-group-addon">mm Hg</span>
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="form_resp" class="col-sm-5 control-label">Respiratory Rate</label>
-						<div class="col-sm-7 input-group">
+						<label for="form_resp" class="col-xs-5 control-label">Respiratory Rate</label>
+						<div class="col-xs-7 input-group">
 							<input type="number" ng-model="reading.respiratory_rate_rpm" class="form-control" id="form_resp" min="0">
 							<span class="input-group-addon">RPM</span>
 						</div>

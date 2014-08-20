@@ -2,7 +2,7 @@ var _ = require('underscore');
 var express = require('express');
 var app = express();
 var server = require('http').Server(app);
-var io = require('socket.io')(server);
+var socketio = require('./app/socketio');
 
 var mongoose = require('mongoose');
 
@@ -22,5 +22,6 @@ app.get('/', function (req, res) {
 });
 
 var server = app.listen(3000, function() {
+	socketio.listen(server);
 	console.log('Listening on port %d', server.address().port);
 });

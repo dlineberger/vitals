@@ -26,8 +26,12 @@ acmeServices.factory('Patient', function($http) {
 					return [];
 				});
 		},
-		create: function(patient, callback) {
-			return $http.post('/api/patients', patient)
+		create: function(patient, socketId, callback) {
+			return $http.post('/api/patients', patient, {
+					headers: {
+						'X-Socket-Client-Id': socketId
+					}
+				})
 				.success(function(data) {
 					if (callback !== undefined) {
 						callback(data);
@@ -47,8 +51,12 @@ acmeServices.factory('Reading', function($http) {
 					return [];
 				});
 		},
-		create: function(patientId, reading, callback) {
-			return $http.post('/api/patients/' + patientId + '/readings', reading)
+		create: function(patientId, reading, socketId, callback) {
+			return $http.post('/api/patients/' + patientId + '/readings', reading, {
+					headers: {
+						'X-Socket-Client-Id': socketId
+					}
+				})
 				.success(function(data) {
 					if (callback !== undefined) {
 						callback(data);

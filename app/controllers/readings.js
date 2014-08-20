@@ -1,4 +1,6 @@
 var mongoose = require('mongoose');
+var socketio = require('../socketio');
+
 Reading = mongoose.model('Reading');
 
 // Load the reading object when :id specified
@@ -32,6 +34,7 @@ exports.create = function(req, res) {
 				error: 'Reading already exists'
 			});
 		} else {
+			socketio.send('/reading', reading, req.headers['x-socket-client-id']);
 			res.json(reading);
 		}
 	});
