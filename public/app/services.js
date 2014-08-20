@@ -1,13 +1,5 @@
 var acmeServices = angular.module('acmeServices', []);
 
-var patients =
-	[
-		{ _id: 0, name: 'David Lineberger' },
-		{ _id: 1, name: 'Wanwisa Lineberger' },
-		{ _id: 2, name: 'John Doe' },
-		{ _id: 3, name: 'Jane Doe' }
-	];
-
 acmeServices.factory('Patient', function($http) {
 	return {
 		query: function() {

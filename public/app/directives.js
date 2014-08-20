@@ -47,7 +47,7 @@ acmeDirectives.directive('c3Chart', function($filter) {
 				} catch(err) {
 					return null;
 				}
-			}
+			};
 
 			scope.$watchCollection('ngModel', function() {
 				data = scope.ngModel;

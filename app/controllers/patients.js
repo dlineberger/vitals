@@ -37,9 +37,9 @@ exports.create = function(req, res) {
 			res.json(patient);
 		}
 	});
-}
+};
 
 // GET /api/patients/:id
 exports.show = function(req, res) {
 	res.json(req.patient);
-}
+};

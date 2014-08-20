@@ -1,5 +1,3 @@
-'use strict';
-
 var acmeControllers = angular.module('acmeControllers', []);
 
 acmeControllers.controller(
@@ -50,16 +48,15 @@ acmeControllers.controller(
 
 		 $scope.reset = function() {
 			 $scope.reading = {};
-		 }
+		 };
 
 		 $scope.isInvalid = function() {
-			 return $scope.reading.pulse_bpm === undefined || $scope.reading.pulse_bpm < 0
-				 || $scope.reading.temperature_degf === undefined || $scope.reading.temperature_degf < 0
-				 || $scope.reading.blood_pressure_sys === undefined || $scope.reading.blood_pressure_sys < 0
-				 || $scope.reading.blood_pressure_dia === undefined || $scope.reading.blood_pressure_dia < 0
-				 || $scope.reading.respiratory_rate_rpm === undefined || $scope.reading.respiratory_rate_rpm < 0;
-
-		 }
+			 return $scope.reading.pulse_bpm === undefined || $scope.reading.pulse_bpm < 0 ||
+				 $scope.reading.temperature_degf === undefined || $scope.reading.temperature_degf < 0 ||
+				 $scope.reading.blood_pressure_sys === undefined || $scope.reading.blood_pressure_sys < 0 ||
+				 $scope.reading.blood_pressure_dia === undefined || $scope.reading.blood_pressure_dia < 0 ||
+				 $scope.reading.respiratory_rate_rpm === undefined || $scope.reading.respiratory_rate_rpm < 0;
+		 };
 
 		 $scope.reset();
 	 }]);
@@ -76,13 +73,13 @@ acmeControllers.controller(
 					 last: ""
 				 }
 			 };
-		 }
+		 };
 
 		 $scope.isInvalid = function() {
 			 return $scope.patient.name.first === undefined ||
 				 $scope.patient.name.last === undefined ||
 				 $scope.patient.name.first.length === 0 || $scope.patient.name.last.length === 0;
-		 }
+		 };
 
 		 $scope.addPatient = function(patient) {
 			 Patient.create(patient, $scope.socketId, function(savedPatient) {
@@ -104,11 +101,32 @@ acmeControllers.controller(
 
 		 $scope.$on('reading', function(event, reading) {
 			 if (reading.patient_id === $scope.patient._id) {
-				 $scope.readings.push(reading);
-				 $scope.selectedReading = reading;
+				 addReading(reading);
 			 }
 		 });
-		 
+
+		 $scope.filterDays = null;
+
+		 var addReading = function(reading) {
+			 $scope.allReadings.push(reading);
+			 $scope.selectedReading = reading;
+			 filterReadings();
+		 };
+
+		 var filterReadings = function() {
+			 var filterStartDate = new Date(0);
+			 if ($scope.filterDays) {
+				 var now = new Date();
+				 filterStartDate = now.setDate(now.getDate() - $scope.filterDays);
+			 }
+
+			 $scope.readings = _.filter($scope.allReadings, function(reading) {
+				 return Date.parse(reading.timestamp) > filterStartDate;
+			 });
+
+			 $scope.selectedReading = _.last($scope.readings);
+		 };
+
 		 $scope.setSelectedReading = function(data) {
 			 $scope.$apply(function() {
 				 if (data) {
@@ -119,26 +137,12 @@ acmeControllers.controller(
 			 });
 		 };
 
-		 $scope.setDateFilterDays = function(days) {
-			 var filterStartDate = new Date(0);
-			 if (days) {
-				 var now = new Date();
-				 filterStartDate = now.setDate(now.getDate() - days);
-			 }
+		 $scope.$watch('filterDays', filterReadings);
 
-			 $scope.readings = _.filter($scope.allReadings, function(reading) {
-				 return Date.parse(reading.timestamp) > filterStartDate;
-			 });
+		 $scope.postReading = function(reading) {
+			 Reading.create($routeParams.patientId, reading, $scope.socketId, addReading);
 		 };
 
-		 
-		 $scope.addReading = function(reading) {
-			 Reading.create($routeParams.patientId, reading, $scope.socketId, function(savedReading) {
-				 $scope.readings.push(savedReading);
-				 $scope.selectedReading = savedReading;
-			 });
-		 };
+		 filterReadings();
 
-		 $scope.setDateFilterDays();
-		 $scope.selectedReading = _.last($scope.readings);
 	 }]);
