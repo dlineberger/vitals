@@ -1,13 +1,16 @@
 <nav class="acme-navbar navbar-fixed-top" role="navigation">
 	<div class="container-fluid">
-		<a class="navbar-brand hideable-text" href="#">ACME</a>
+		<a class="navbar-brand hideable-text" href="#/patients">ACME</a>
 		<ol class="breadcrumb pull-left">
-			<li><a href="#"><span class="hideable-text">Patient</span> List</a></li>
+			<li><a href="#/patients"><span class="hideable-text">Patient</span> List</a></li>
 			<li ng-show="patient" class="patient-name"><span class="hideable-text">{{patient.name.first}}</span> {{patient.name.last}}</li>
 		</ol>
 		<button ng-show="!patient" class="btn btn-primary navbar-btn pull-right" data-toggle="modal" data-target="#patient-modal"><span class="glyphicon glyphicon-plus"></span> <span class="hideable-text">Add Patient</span></button>
-		<button ng-show="patient" class="btn btn-primary navbar-btn pull-right" data-toggle="modal" data-target="#reading-modal"><span class="glyphicon glyphicon-plus"></span> <span class="hideable-text">Add Vitals</span></button>
+		<form ng-show="!patient" class="navbar-form pull-right" role="search">
+			<div class="form-group pull-right">
+				<input type="text" ng-model="filter.searchText" class="form-control" placeholder="Search Patients">
+			</div>
+		</form>		<button ng-show="patient" class="btn btn-primary navbar-btn pull-right" data-toggle="modal" data-target="#reading-modal"><span class="glyphicon glyphicon-plus"></span> <span class="hideable-text">Add Vitals</span></button>
 		<button ng-show="patient" class="btn btn-default navbar-btn pull-right" data-toggle="modal" data-target="#table-modal"><span class="glyphicon glyphicon-th"></span> <span class="hideable-text">View Table</span></button>
 	</div>
 </nav>
-

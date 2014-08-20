@@ -6,19 +6,25 @@
 		<button class="btn btn-primary center-block" data-toggle="modal" data-target="#patient-modal"><span class="glyphicon glyphicon-plus"></span> Add Patient</button>
 	</div>
 
-	<div class="panel panel-default col-md-8 col-md-offset-2" ng-show="patients && patients.length > 0">
+	<div class="patient-list-container panel panel-default col-md-8 col-md-offset-2" ng-show="patients && patients.length > 0">
 		<div class="panel-heading">
 			<h3 class="panel-title">Patient List</h3>
+			<div class="reading-container">
+				<div class="reading-stat">Pulse</div>
+				<div class="reading-stat">Temp</div>
+				<div class="reading-stat">BP</div>
+				<div class="reading-stat">RPM</div>
+			</div>
 		</div>
 		<ul class="list-group">
-			<li ng-repeat="patient in patients | orderBy:['name.last', 'name.first']" class="list-group-item">
+			<li ng-repeat="patient in patients | filter:filter.searchText | orderBy:['name.last', 'name.first']" class="list-group-item">
 				<a ng-href="#/patients/{{patient._id}}">
 					<div class="patient-name">{{patient.name.first}} {{patient.name.last}}</div>
-					<div class="reading-container" ng-show="patient.last_reading">
-						<div class="reading-stat">{{patient.last_reading.pulse_bpm}}</div>
-						<div class="reading-stat">{{patient.last_reading.temperature_degf}}</div>
-						<div class="reading-stat">{{patient.last_reading.blood_pressure_sys}} / {{patient.last_reading.blood_pressure_dia}}</div>
-						<div class="reading-stat">{{patient.last_reading.respiratory_rate_rpm}}</div>
+					<div class="reading-container">
+						<div class="reading-stat" ng-class="{'danger-reading': patient.last_reading.pulse_bpm < 40 || patient.last_reading.pulse_bpm > 130}">{{patient.last_reading.pulse_bpm || ''}}</div>
+						<div class="reading-stat" ng-class="{'danger-reading': patient.last_reading.temperature_degf < 96 || patient.last_reading.temperature_degf >= 100}">{{patient.last_reading.temperature_degf || ''}}</div>
+						<div class="reading-stat" ng-class="{'danger-reading': patient.last_reading.blood_pressure_dia < 50 || patient.last_reading.blood_pressure_dia > 100 || patient.last_reading.blood_pressure_sys < 90 || patient.last_reading.blood_pressure_sys > 160}"><span ng-show="patient.last_reading.blood_pressure_sys && patient.last_reading.blood_pressure_dia"> {{patient.last_reading.blood_pressure_sys}}/{{patient.last_reading.blood_pressure_dia}}</span></div>
+						<div class="reading-stat" ng-class="{'danger-reading': patient.last_reading.respiratory_rate_rpm < 8 || patient.last_reading.respiratory_rate_rpm > 24}">{{patient.last_reading.respiratory_rate_rpm || ''}}</div>
 					</div>
 				</a>
 			</li>

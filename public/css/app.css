@@ -136,7 +136,10 @@ body {
 
   .stat-reading {
     -webkit-flex: 1 !important;
-    flex: 1 !important; } }
+    flex: 1 !important; }
+
+  .reading-container {
+    display: none; } }
 @media only screen and (max-width: 700px) {
   .hideable-text {
     display: none; } }
@@ -146,3 +149,32 @@ body {
   width: 5em;
   float: left;
   line-height: 1.42857143; }
+
+.patient-list-container a {
+  color: #686F8A; }
+.patient-list-container .reading-container {
+  float: right; }
+.patient-list-container .panel-heading {
+  height: 50px;
+  padding: 0; }
+  .patient-list-container .panel-heading h3 {
+    margin-left: 15px;
+    line-height: 48px;
+    float: left;
+    display: inline-block; }
+.patient-list-container .list-group-item {
+  padding: 0;
+  height: 50px; }
+.patient-list-container .patient-name {
+  float: left;
+  margin-left: 15px;
+  line-height: 48px;
+  font-weight: normal; }
+.patient-list-container .reading-stat {
+  float: right;
+  border-left: 1px solid #ddd;
+  height: 48px;
+  line-height: 48px;
+  width: 80px;
+  text-align: center;
+  font-size: 1.3em; }

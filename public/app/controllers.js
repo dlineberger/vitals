@@ -34,6 +34,9 @@ acmeControllers.controller(
 	'PatientListCtrl',
 	['$scope','patients',
 	 function($scope, patients) {
+
+		 $scope.filter = { searchText: ''};
+		 
 		 $scope.patients = patients;
 
 		 $scope.$on('patient', function(event, patient) {
