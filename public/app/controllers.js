@@ -13,26 +13,59 @@ acmeControllers.controller(
 	'ReadingEditCtrl',
 	['$scope', '$routeParams', 'Reading',
 	 function($scope, $routeParams, Reading) {
-		 $scope.reading = {};
+
+		 $scope.reset = function() {
+			 $scope.reading = {};
+		 }
+
+		 $scope.isInvalid = function() {
+			 return $scope.reading.pulse_bpm === undefined || $scope.reading.pulse_bpm < 0
+				 || $scope.reading.temperature_degf === undefined || $scope.reading.temperature_degf < 0
+			 	 || $scope.reading.blood_pressure_sys === undefined || $scope.reading.blood_pressure_sys < 0
+			 	 || $scope.reading.blood_pressure_dia === undefined || $scope.reading.blood_pressure_dia < 0
+			 	 || $scope.reading.respiratory_rate_rpm === undefined || $scope.reading.respiratory_rate_rpm < 0;
+			 
+		 }
 
 		 $scope.addReading = function(reading) {
 			 Reading.create($routeParams.patientId, reading, function(savedReading) {
 				 $scope.readings.push(savedReading);
+				 $scope.setSelectedReading();
+				 $scope.reset();
 			 });
 		 };
+
+		 $scope.reset();
 	 }]);
 
 acmeControllers.controller(
 	'PatientEditCtrl',
 	['$scope', '$routeParams', 'Patient',
 	 function($scope, $routeParams, Patient) {
-		 $scope.patient = { name: {} };
+
+		 $scope.reset = function() {
+			 $scope.patient = {
+				 name: {
+					 first: "",
+					 last: ""
+				 }
+			 };
+		 }
+
+		 $scope.isInvalid = function() {
+			 return $scope.patient.name.first === undefined ||
+				 $scope.patient.name.last === undefined ||
+				 $scope.patient.name.first.length === 0 || $scope.patient.name.last.length === 0;
+		 }
 
 		 $scope.addPatient = function(patient) {
 			 Patient.create(patient, function(savedPatient) {
 				 $scope.patients.push(savedPatient);
+				 $scope.reset();
 			 });
 		 };
+
+		 $scope.reset();
 	 }]);
 
 
@@ -48,7 +81,7 @@ acmeControllers.controller(
 				 if (data) {
 					 $scope.selectedReading = data;
 				 } else {
-					 $scope.selectedReading = _.last($scope.readings);	 
+					 $scope.selectedReading = _.last($scope.readings);
 				 }
 			 });
 		 };
@@ -65,9 +98,6 @@ acmeControllers.controller(
 			 });
 		 };
 
-
-
 		 $scope.setDateFilterDays();
-
 		 $scope.selectedReading = _.last($scope.readings);
 	 }]);

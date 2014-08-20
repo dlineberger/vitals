@@ -112,6 +112,9 @@ body {
 .warning {
   fill: yellow; }
 
+.no-data-container button {
+  margin-top: 40px; }
+
 .panel-default {
   padding: 0; }
   .panel-default .panel-heading {
