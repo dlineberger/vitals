@@ -161,16 +161,12 @@ body {
 
 }
 
-.danger {
-	fill: red;
+.danger-reading {
+	color: red;
 }
 
-.warning {
-	fill: yellow;
-}
-
-.normal {
-
+.invalid-field {
+	color: #ff0000;
 }
 
 .no-data-container {

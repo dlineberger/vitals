@@ -1,5 +1,35 @@
 var acmeDirectives = angular.module('acmeDirectives', []);
 
+acmeDirectives.directive('bloodPressure', function() {
+		return {
+			require: 'ngModel',
+			restrict: 'A',
+			link: function(scope, element, attrs, ctrl) {
+				
+				ctrl.$parsers.unshift(function(viewValue) {
+					var regex = /\s*(\d+)\s*\/\s*(\d+)/;
+
+					var match = regex.exec(viewValue);
+					if (match !== null) {
+						ctrl.$setValidity('bloodPressure', true);
+						ctrl.$modelValue.blood_pressure_sys = match[1];
+						ctrl.$modelValue.blood_pressure_dia = match[2];
+						return ctrl.$modelValue;
+					}
+					ctrl.$setValidity('bloodPressure', false);
+					return ctrl.$modelValue;
+				});
+
+				ctrl.$formatters.unshift(function(modelValue) {
+					if ('blood_pressure_sys' in modelValue && 'blood_pressure_dia' in modelValue) {
+						return "" + modelValue.blood_pressure_sys + "/" + modelValue.blood_pressure_dia;
+					}
+					return "";
+				});
+			}
+		};
+	});
+
 acmeDirectives.directive('c3Chart', function() {
 	return {
 		restrict: 'C',

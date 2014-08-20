@@ -106,11 +106,11 @@ body {
   .header-row .stat-chart {
     padding: 0px 5px; }
 
-.danger {
-  fill: red; }
+.danger-reading {
+  color: red; }
 
-.warning {
-  fill: yellow; }
+.invalid-field {
+  color: #ff0000; }
 
 .no-data-container button {
   margin-top: 40px; }

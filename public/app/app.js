@@ -2,7 +2,8 @@ var acmeApp = angular.module('acmeApp', [
 	'ngRoute',
 	'acmeControllers',
 	'acmeServices',
-	'acmeDirectives'
+	'acmeDirectives',
+	'acmeFilters'
 ]);
 
 acmeApp.config(['$routeProvider',
