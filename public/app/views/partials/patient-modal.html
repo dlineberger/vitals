@@ -1,5 +1,5 @@
 <div ng-controller="PatientEditCtrl" class="modal fade" id="patient-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	<form name="patient-form" role="form" novalidate>
+	<form name="patientform" role="form" novalidate>
 		<div class="modal-dialog modal-sm">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -7,13 +7,13 @@
 					<h4 class="modal-title" id="myModalLabel">New Patient</h4>
 				</div>
 				<div class="modal-body">
-					<div class="form-group">
+					<div class="form-group" ng-class="{'has-success': patientform.first.$dirty && patientform.first.$valid, 'has-error': patientform.last.$dirty && patientform.first.$invalid}"}">
 						<label for="form_name_first" class="control-label">First Name</label>
-						<input type="text" ng-model="patient.name.first" class="form-control" id="form_name_first" required>
+						<input type="text" ng-model="patient.name.first" class="form-control" name="first" id="form_name_first" required>
 					</div>
-					<div class="form-group">
+					<div class="form-group" ng-class="{'has-success': patientform.last.$dirty && patientform.last.$valid, 'has-error': patientform.last.$dirty && patientform.last.$invalid}"}">
 						<label for="form_name_last" class="control-label">Last Name</label>
-						<input type="text" ng-model="patient.name.last" class="form-control" id="form_name_first" required>
+						<input type="text" ng-model="patient.name.last" class="form-control" name="last" id="form_name_last" required>
 					</div>
 				</div>
 				<div class="modal-footer">
