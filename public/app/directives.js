@@ -131,7 +131,7 @@ acmeDirectives.directive('c3Chart', function($filter) {
 							// We don't want to disable the tooltip because we then don't get the focus lines.
 							// So, create a dummy tooltip.
 							var date = d[0].x;
-							return "<strong>" + $filter('date')(date, 'short') + "</strong>";
+							return "<div class='well well-sm'>" + $filter('date')(date, 'short') + "</div>";
 						}
 					}
 				});

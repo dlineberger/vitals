@@ -45,8 +45,8 @@ acmeControllers.controller(
 
 acmeControllers.controller(
 	'ReadingEditCtrl',
-	['$scope', '$routeParams', 'Reading',
-	 function($scope, $routeParams, Reading) {
+	['$scope', '$routeParams',
+	 function($scope, $routeParams) {
 
 		 $scope.reset = function() {
 			 $scope.reading = {};
@@ -60,14 +60,6 @@ acmeControllers.controller(
 				 || $scope.reading.respiratory_rate_rpm === undefined || $scope.reading.respiratory_rate_rpm < 0;
 
 		 }
-
-		 $scope.addReading = function(reading) {
-			 Reading.create($routeParams.patientId, reading, $scope.socketId, function(savedReading) {
-				 $scope.readings.push(savedReading);
-				 $scope.selectedReading = savedReading;
-				 $scope.reset();
-			 });
-		 };
 
 		 $scope.reset();
 	 }]);
@@ -105,14 +97,15 @@ acmeControllers.controller(
 
 acmeControllers.controller(
 	'PatientDetailCtrl',
-	['$scope', '$routeParams', 'patient', 'readings',
-	 function($scope, $routeParams, patient, readings) {
+	['$scope', '$routeParams', 'patient', 'readings', 'Reading',
+	 function($scope, $routeParams, patient, readings, Reading) {
 		 $scope.patient = patient;
 		 $scope.allReadings = _.sortBy(readings, 'timestamp');
 
 		 $scope.$on('reading', function(event, reading) {
 			 if (reading.patient_id === $scope.patient._id) {
 				 $scope.readings.push(reading);
+				 $scope.selectedReading = reading;
 			 }
 		 });
 		 
@@ -135,6 +128,14 @@ acmeControllers.controller(
 
 			 $scope.readings = _.filter($scope.allReadings, function(reading) {
 				 return Date.parse(reading.timestamp) > filterStartDate;
+			 });
+		 };
+
+		 
+		 $scope.addReading = function(reading) {
+			 Reading.create($routeParams.patientId, reading, $scope.socketId, function(savedReading) {
+				 $scope.readings.push(savedReading);
+				 $scope.selectedReading = savedReading;
 			 });
 		 };
 

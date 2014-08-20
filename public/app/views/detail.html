@@ -172,10 +172,10 @@
 						</tr>
 						<tr ng-repeat="reading in readings | orderBy:'timestamp':true">
 							<th>{{reading.timestamp | date:'short'}}</th>
-							<th class="text-center" ng-class="{'danger-reading': selectedReading.pulse_bpm < 40 || selectedReading.pulse_bpm > 130}">{{reading.pulse_bpm}}</th>
-							<th class="text-center" ng-class="{'danger-reading': selectedReading.temperature_degf < 96 || selectedReading.temperature_degf >= 100}"}>{{reading.temperature_degf}}</th>
-							<th class="text-center" ng-class="{'danger-reading': selectedReading.blood_pressure_dia < 50 || selectedReading.blood_pressure_dia > 100 || selectedReading.blood_pressure_sys < 90 || selectedReading.blood_pressure_sys > 160}">{{reading.blood_pressure_sys}} / {{reading.blood_pressure_dia}}</th>
-							<th class="text-center" ng-class="{'danger-reading': selectedReading.respiratory_rate_rpm < 8 || selectedReading.respiratory_rate_rpm > 24}">{{reading.respiratory_rate_rpm}}</th>
+							<th class="text-center" ng-class="{'danger-reading': reading.pulse_bpm < 40 || reading.pulse_bpm > 130}">{{reading.pulse_bpm}}</th>
+							<th class="text-center" ng-class="{'danger-reading': reading.temperature_degf < 96 || reading.temperature_degf >= 100}"}>{{reading.temperature_degf}}</th>
+							<th class="text-center" ng-class="{'danger-reading': reading.blood_pressure_dia < 50 || reading.blood_pressure_dia > 100 || reading.blood_pressure_sys < 90 || reading.blood_pressure_sys > 160}">{{reading.blood_pressure_sys}} / {{reading.blood_pressure_dia}}</th>
+							<th class="text-center" ng-class="{'danger-reading': reading.respiratory_rate_rpm < 8 || reading.respiratory_rate_rpm > 24}">{{reading.respiratory_rate_rpm}}</th>
 						</tr>
 					</table>
 				</div>
