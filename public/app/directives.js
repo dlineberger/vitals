@@ -30,7 +30,7 @@ acmeDirectives.directive('bloodPressure', function() {
 		};
 	});
 
-acmeDirectives.directive('c3Chart', function() {
+acmeDirectives.directive('c3Chart', function($filter) {
 	return {
 		restrict: 'C',
 		transclude: true,
@@ -92,7 +92,22 @@ acmeDirectives.directive('c3Chart', function() {
 							}							
 						},
 						color: function (color, d) {
-							return d.value > 100 ? d3.rgb("#ff0000") : color;
+							
+							var red = d3.rgb("#ff0000");
+							switch (d.id) {
+							case 'pulse_bpm':
+								return d.value < 40 || d.value > 130 ? red : color;
+							case 'temperature_degf':
+								return d.value < 96 || d.value >= 100 ? red : color;
+							case 'blood_pressure_sys':
+								return d.value < 90 || d.value > 160 ? red : color;
+							case 'blood_pressure_dia':
+								return d.value < 50 || d.value > 100 ? red : color;
+							case 'respiratory_rate_rpm':
+								return d.value < 8 || d.value > 24 ? red : color;
+							}
+
+							return color;
 						}
 					},
 					axis: {
@@ -112,10 +127,11 @@ acmeDirectives.directive('c3Chart', function() {
 						show: false
 					},
 					tooltip: {
-						contents: function() {
+						contents: function(d) {
 							// We don't want to disable the tooltip because we then don't get the focus lines.
 							// So, create a dummy tooltip.
-							return "<span></span>";
+							var date = d[0].x;
+							return "<strong>" + $filter('date')(date, 'short') + "</strong>";
 						}
 					}
 				});
