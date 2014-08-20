@@ -1,0 +1,113 @@
+.chart-label {
+	font-size: 12px;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+}
+
+.header-label {
+	@extend .chart-label;
+	line-height: 40px;
+	vertical-align: middle;
+	color: $header-foreground-color;
+}
+
+.header-interactive {
+	@extend .header-label;
+	background-color: $highlight-color !important;
+	text-align: center;
+}
+
+.stat-row {
+	display: -webkit-flex;
+	display: flex;
+	height: 150px;
+	margin: 1px;
+	background-color: $lighter-background-color;
+
+	.dropdown {
+		height: 100%;
+		background-color: inherit;
+	}
+
+	.dropdown-toggle {
+		color: #fff;
+		background-color: inherit;
+		height: 100%;
+	}
+
+	& > .column {
+		position: relative;
+		height: 100%;
+	}
+
+	.start-date {
+		@extend .header-label;
+		float: left;
+	}
+
+	.end-date {
+		@extend .header-label;
+		float: right;
+	}
+
+
+	.stat-axis {
+		-webkit-flex: 0 0 40px;
+		flex: 0 0 40px;
+		background-color: $darker-background-color;
+		border-right: 1px solid #999;
+	}
+
+	.stat-chart {
+		-webkit-flex: 1;
+		flex: 1;
+		width: 200px;
+	}
+
+	.stat-reading {
+		-webkit-flex: 0 0 150px;
+		flex: 0 0 150px;
+		background-color: $darker-background-color;
+		border-left: 1px solid #999;
+	}
+
+	.stat-label {
+		@extend .chart-label;
+		position: absolute;
+		left: 0;
+		right: 0;
+		margin: 0 auto;
+	}
+
+	.stat-label-header {
+		top: 4px;
+	}
+
+	.stat-label-footer {
+		bottom: 4px;
+	}
+
+	h2 {
+		margin: 0;
+		font-size: 48px;
+		font-weight: bold;
+		line-height: 150px;
+		vertical-align: middle;
+
+		&.blood-pressure {
+			font-size: 36px;
+		}
+	}
+
+}
+
+.header-row {
+	@extend .stat-row;
+	background-color: $header-background-color;
+	height: 40px;
+
+	.stat-chart {
+		padding: 0px 5px;
+	}
+
+}

@@ -1,0 +1,31 @@
+.acme-navbar {
+	min-height: 50px;
+	margin-bottom: 20px;
+	border: 1px solid transparent;
+
+	background-color: $lighter-background-color;
+
+	.patient-name {
+		font-size: 1.2em;
+		font-weight: bold;
+	}
+
+	ol.breadcrumb {
+		margin-top: 0;
+		margin-bottom: 0;
+		height: 50px;
+		line-height: 50px;
+		padding: 0 15px;
+		background-color: $lighter-background-color;
+
+		li+li:before {
+			content: ">";
+		}
+	}
+
+	button {
+		margin-left: 10px;
+	}
+
+	box-shadow: 0px 5px 10px 0px rgba(50, 50, 50, 1);
+}

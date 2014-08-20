@@ -1,0 +1,50 @@
+.patient-list-container {
+	padding: 0;
+	
+	
+	a {
+		color: $foreground-color;
+		text-decoration: none;
+	}
+
+	.reading-container {
+		float: right;
+	}
+
+	.panel-heading {
+		background-color: $header-background-color;
+		color: $header-foreground-color;
+		height: 50px;
+		padding: 0;
+
+		h3 {
+			margin-left: 15px;
+			line-height: 48px;
+			float: left;
+			display: inline-block;
+		}
+	}
+	
+	.list-group-item {
+		background-color: $lighter-background-color;
+		padding: 0;
+		height: 50px;
+	}
+
+	.patient-name {
+		float: left;
+		margin-left: 15px;
+		line-height: 48px;
+		font-weight: normal;
+	}
+
+	.reading-stat {
+		float: right;
+		border-left: 1px solid #ddd;
+		height: 48px;
+		line-height: 48px;
+		width: 80px;
+		text-align: center;
+		font-size: 1.3em;
+	}
+}
