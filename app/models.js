@@ -3,8 +3,9 @@ var mongoose = require('mongoose');
 var PatientSchema = mongoose.Schema({
 	name: {
 		first: { type: String },
-		last: { type: String }
-	}
+		last: { type: String },
+	},
+	last_reading: { type: mongoose.Schema.Types.ObjectId, ref: 'Reading' }
 });
 
 var ReadingSchema = mongoose.Schema({

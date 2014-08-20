@@ -39,6 +39,15 @@ acmeControllers.controller(
 		 $scope.$on('patient', function(event, patient) {
 			 $scope.patients.push(patient);
 		 });
+
+		 $scope.$on('reading', function(event, reading) {
+			 for (var i = 0; i < $scope.patients.length; i++) {
+				 if ($scope.patients[i]._id === reading.patient_id) {
+					 $scope.patients[i].last_reading = reading;
+					 break;
+				 }
+			 }
+		 });
 	 }]);
 
 acmeControllers.controller(

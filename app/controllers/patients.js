@@ -19,7 +19,7 @@ exports.patient = function(req, res, next, id) {
 
 // GET /api/patients
 exports.index = function(req, res) {
-	Patient.find({}, function(err, patients) {
+	Patient.find({}).populate('last_reading').exec(function(err, patients) {
 		res.json(patients);
 	});
 };

@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 var socketio = require('../socketio');
 
 Reading = mongoose.model('Reading');
+Patient = mongoose.model('Patient');
 
 // Load the reading object when :id specified
 exports.reading = function(req, res, next, id) {
@@ -34,8 +35,10 @@ exports.create = function(req, res) {
 				error: 'Reading already exists'
 			});
 		} else {
-			socketio.send('/reading', reading, req.headers['x-socket-client-id']);
-			res.json(reading);
+			Patient.findByIdAndUpdate(reading.patient_id, { $set: { last_reading: reading._id }}, function(err, patient) {
+				socketio.send('/reading', reading, req.headers['x-socket-client-id']);
+				res.json(reading);
+			});
 		}
 	});
 };

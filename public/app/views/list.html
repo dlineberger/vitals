@@ -12,7 +12,15 @@
 		</div>
 		<ul class="list-group">
 			<li ng-repeat="patient in patients | orderBy:['name.last', 'name.first']" class="list-group-item">
-				<a ng-href="#/patients/{{patient._id}}">{{patient.name.first}} {{patient.name.last}}</a>
+				<a ng-href="#/patients/{{patient._id}}">
+					<div class="patient-name">{{patient.name.first}} {{patient.name.last}}</div>
+					<div class="reading-container" ng-show="patient.last_reading">
+						<div class="reading-stat">{{patient.last_reading.pulse_bpm}}</div>
+						<div class="reading-stat">{{patient.last_reading.temperature_degf}}</div>
+						<div class="reading-stat">{{patient.last_reading.blood_pressure_sys}} / {{patient.last_reading.blood_pressure_dia}}</div>
+						<div class="reading-stat">{{patient.last_reading.respiratory_rate_rpm}}</div>
+					</div>
+				</a>
 			</li>
 		</ul>
 	</div>
