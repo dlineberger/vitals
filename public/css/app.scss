@@ -1,3 +1,12 @@
+$darker-purple: #515a77;
+$lighter-purple: #616b8e;
+$header-background-color: #8994B8;
+$highlight-color: #428bca;
+$header-foreground-color: #e6eaf3;
+$foreground-color: #686f8a;
+$lighter-background-color: #e6eaf3;
+$darker-background-color: #dcdfec;
+
 html {
 	height: 100%;
 }
@@ -8,8 +17,8 @@ body {
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	padding: 70px 10px;
-	background-image: linear-gradient(to bottom, #515A77 0%, #616B8E 100%);
-	color: #686F8A;
+	background-image: linear-gradient(to bottom, $darker-purple 0%, $lighter-purple 100%);
+	color: $foreground-color;
 }
 
 .container-fluid {
@@ -17,7 +26,11 @@ body {
 }
 
 .main-container {
-	margin-bottom: 20px;
+	padding-bottom: 20px;
+}
+
+.no-data-container {
+	background-color: $lighter-background-color;
 }
 
 .chart-label {
@@ -30,12 +43,12 @@ body {
 	@extend .chart-label;
 	line-height: 40px;
 	vertical-align: middle;
-	color: #E6EAF3;
+	color: $header-foreground-color;
 }
 
 .header-interactive {
 	@extend .header-label;
-	background-color: #428bca !important;
+	background-color: $highlight-color !important;
 	text-align: center;
 }
 
@@ -44,7 +57,7 @@ body {
 	margin-bottom: 20px;
 	border: 1px solid transparent;
 
-	background-color: #E6EAF3;
+	background-color: $lighter-background-color;
 
 	ol.breadcrumb {
 		margin-top: 0;
@@ -52,7 +65,7 @@ body {
 		height: 50px;
 		line-height: 50px;
 		padding: 0 15px;
-		background-color: #E6EAF3;
+		background-color: $lighter-background-color;
 
 		li+li:before {
 			content: ">";
@@ -71,7 +84,7 @@ body {
 	display: flex;
 	height: 150px;
 	margin: 1px;
-	background-color: #E6EAF3;
+	background-color: $lighter-background-color;
 
 	.dropdown {
 		height: 100%;
@@ -103,7 +116,7 @@ body {
 	.stat-axis {
 		-webkit-flex: 0 0 40px;
 		flex: 0 0 40px;
-		background-color: #DCDFEC;
+		background-color: $darker-background-color;
 		border-right: 1px solid #999;
 	}
 
@@ -116,7 +129,7 @@ body {
 	.stat-reading {
 		-webkit-flex: 0 0 150px;
 		flex: 0 0 150px;
-		background-color: #DCDFEC;
+		background-color: $darker-background-color;
 		border-left: 1px solid #999;
 	}
 
@@ -152,7 +165,7 @@ body {
 
 .header-row {
 	@extend .stat-row;
-	background-color: #8994B8;
+	background-color: $header-background-color;
 	height: 40px;
 
 	.stat-chart {
@@ -179,12 +192,12 @@ body {
 	padding: 0;
 
 	.panel-heading {
-		background-color: #8994B8;
+		background-color: $header-background-color;
 		color: #fff;
 	}
 
 	.list-group-item {
-		background-color: #E6EAF3;
+		background-color: $lighter-background-color;
 	}
 }
 
@@ -241,7 +254,8 @@ body {
 .patient-list-container {
 
 	a {
-		color: #686F8A;
+		color: $foreground-color;
+		text-decoration: none;
 	}
 
 	.reading-container {
