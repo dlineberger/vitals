@@ -14,8 +14,8 @@ var send = function(topic, obj, senderId) {
 };
 
 exports.listen = function(server) {
-	io.set('transports', ['xhr-polling']);
 	io = socketio.listen(server);
+	io.set('transports', ['xhr-polling']);
 	io.sockets.on('connection', onConnection);
 };
 
