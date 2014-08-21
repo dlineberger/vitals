@@ -4,15 +4,18 @@ var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1'
 var db_host = 'localhost';
 var db_port = '27017';
 var db_name = 'vitals';
+var userpass = '';
+
 
 if (process.env.OPENSHIFT_MONGODB_DB_HOST) {
 	db_host = process.env.OPENSHIFT_MONGODB_DB_HOST;
 }
 if (process.env.OPENSHIFT_MONGODB_DB_PORT) {
 	db_port = process.env.OPENSHIFT_MONGODB_DB_PORT;
+	userpass = process.env.OPENSHIFT_MONGODB_DB_USERNAME + ":" + process.env.OPENSHIFT_MONGODB_DB_PASSWORD + "@";
 }
 
-var mongodb_connection_string = 'mongodb://' + db_host + ':' + db_port + '/' + db_name;
+var mongodb_connection_string = 'mongodb://' + userpass + db_host + ':' + db_port + '/' + db_name;
 
 var _ = require('underscore');
 var express = require('express');
