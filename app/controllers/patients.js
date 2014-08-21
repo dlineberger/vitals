@@ -1,3 +1,4 @@
+var util = require('util');
 var mongoose = require('mongoose');
 var socketio = require('../socketio');
 
@@ -29,6 +30,8 @@ exports.create = function(req, res) {
 	var patient = new Patient(req.body);
 	Patient.create(patient, function(err, patient) {
 		if (err) {
+			console.log("PATIENT CREATE ERROR!");
+			console.log(util.inspect(err));
 			res.jsonp(409, {
 				error: 'Patient already exists'
 			});
